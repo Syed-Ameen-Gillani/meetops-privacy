@@ -5,67 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - MeetOps</title>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #0F172A; color: #F8FAFC; line-height: 1.6; margin: 0; padding: 40px 20px; }
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: #0F172A; color: #F8FAFC; line-height: 1.6; margin: 0; padding: 40px 20px; }
         .container { max-width: 700px; margin: 0 auto; background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(255, 255, 255, 0.1); padding: 40px; border-radius: 16px; }
         h1 { color: #22D3EE; margin-bottom: 5px; }
         .date { color: #94A3B8; font-size: 0.9em; margin-bottom: 30px; }
         h3 { color: #22D3EE; margin-top: 30px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; }
         ul, p { color: #CBD5E1; }
         a { color: #38BDF8; }
+        .footer { color: #94A3B8; font-size: 0.85em; margin-top: 32px; text-align: center; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Privacy Policy for MeetOps</h1>
-        <div class="date">Effective Date: April 2025</div>
-
-        <p><strong>Your privacy is our default.</strong> MeetOps stores everything locally on your device. No accounts. No cloud sync. No data sold.</p>
-
+        <div class="date">Effective date / last updated: April 2026</div>
+        <p><strong>Your privacy is our default.</strong> Your timetable stays on your device. No MeetOps account. Ads and subscriptions use Google / RevenueCat as described below.</p>
         <h3>1. Data We Collect</h3>
-        <p>MeetOps does not collect, transmit, or store any personal data on external servers. All information you enter — including your class schedule, meeting links, and preferences — is stored exclusively on your device using Android's local storage. We do not have access to this data. It never leaves your device.</p>
-
+        <p>We do not operate our own servers for your class data. Information you enter — including your class schedule, meeting links, and preferences — is stored on your device using Android's local storage (SharedPreferences).</p>
+        <p>We do not receive a copy of that schedule data. However, integrated third-party SDKs (see Third-Party Services) may send limited data over the internet for ads, purchases, and subscription status — under their own privacy policies.</p>
         <h3>2. Accessibility Service</h3>
-        <p>MeetOps uses Android's Accessibility Service to automatically navigate the Microsoft Teams interface and join scheduled meetings on your behalf.</p>
+        <p>MeetOps can use Android's Accessibility Service to help join scheduled meetings in supported apps — including Microsoft Teams, Google Meet, and Zoom — without requiring manual taps for each step.</p>
         <p>Specifically, the service:</p>
         <ul>
-            <li>Detects when a scheduled meeting begins.</li>
-            <li>Taps the "Join" button within Teams.</li>
-            <li>Turns off your microphone and camera before joining.</li>
-            <li>Stops all automation as soon as you join.</li>
+            <li>Reacts while a supported meeting app is open and you have enabled automation</li>
+            <li>Looks for on-screen controls needed to join (e.g. Join / Join now)</li>
+            <li>Attempts to turn off microphone and camera before joining where the UI allows</li>
+            <li>Stops driving automation once you have joined or when automation is turned off</li>
         </ul>
-        <p>The Accessibility Service does NOT read your personal messages, contacts, chat history, or any other screen content. It only interacts with meeting join controls. This service is entirely optional and can be disabled from Settings at any time.</p>
-
-        <h3>3. Alarm & Audio</h3>
-        <p>When the "Full Volume Alarm" option is enabled for a class, MeetOps will override your device's silent or vibrate mode and play an alarm at maximum volume at the scheduled class time.</p>
-        <p>This behaviour is disclosed to you before you enable this feature and requires your explicit confirmation. You can disable it at any time by editing the class.</p>
-
+        <p>The service is limited to supported meeting and system permission apps (as configured on your device). It does not collect, log, or transmit your chats, messages, or meeting content to MeetOps or to us. It uses on-screen UI information only as needed to perform join actions you asked MeetOps to automate.</p>
+        <p>This service is optional and can be disabled in MeetOps settings and Android Accessibility settings.</p>
+        <h3>3. Alarm &amp; Audio</h3>
+        <p>When the "Full Volume Alarm" option is enabled for a class, MeetOps schedules a follow-up alarm shortly after your class start time. When it fires, the app can override silent or vibrate mode and play an alarm at high volume (and vibrate) until you confirm you are awake.</p>
+        <p>This behaviour is disclosed before you enable it and requires your explicit confirmation. You can disable it at any time by editing the class.</p>
         <h3>4. Permissions Used</h3>
         <ul>
-            <li><strong>SCHEDULE_EXACT_ALARM:</strong> Fires precisely at your class start time.</li>
-            <li><strong>RECEIVE_BOOT_COMPLETED:</strong> Reschedules alarms after a device reboot.</li>
-            <li><strong>WAKE_LOCK:</strong> Wakes the screen momentarily to launch the meeting app.</li>
-            <li><strong>USE_FULL_SCREEN_INTENT:</strong> Shows the alarm over the lock screen.</li>
-            <li><strong>POST_NOTIFICATIONS:</strong> Delivers the "I'm awake" alarm notification.</li>
-            <li><strong>FOREGROUND_SERVICE:</strong> Keeps the alarm ringing reliably in the background.</li>
-            <li><strong>Accessibility Service:</strong> Automates Teams meeting join — optional, never reads messages.</li>
+            <li><strong>INTERNET:</strong> Used by ad and subscription SDKs; also used when opening meeting links in a browser if needed</li>
+            <li><strong>SCHEDULE_EXACT_ALARM:</strong> Fires precisely at your class start time and for schedule checks</li>
+            <li><strong>RECEIVE_BOOT_COMPLETED:</strong> Reschedules alarms and checks after a device reboot</li>
+            <li><strong>WAKE_LOCK:</strong> Wakes the screen to launch the meeting app at class time</li>
+            <li><strong>USE_FULL_SCREEN_INTENT:</strong> Allows a high-priority notification at class start to wake the screen and open the meeting flow</li>
+            <li><strong>POST_NOTIFICATIONS:</strong> Shows class-time and follow-up alarm notifications, including the "I'm awake" action</li>
+            <li><strong>FOREGROUND_SERVICE_SPECIAL_USE:</strong> Shows an ongoing notification while schedule monitoring is on; runs the follow-up alarm with sound and vibration until you dismiss it</li>
+            <li><strong>Advertising ID:</strong> Declared for Google AdMob on the free tier (how ads are measured and delivered)</li>
+            <li><strong>Accessibility Service:</strong> Optional automation for joining in Teams, Meet, and Zoom — see Accessibility Service above</li>
         </ul>
-
         <h3>5. Third-Party Services</h3>
-        <p>MeetOps integrates with the following third-party SDKs that may collect data independently under their own privacy policies:</p>
+        <p>MeetOps integrates with the following third-party services that may collect data independently under their own privacy policies:</p>
         <ul>
-            <li><strong>RevenueCat</strong> — Processes in-app purchases and subscription status. (See <a href="https://revenuecat.com/privacy">revenuecat.com/privacy</a>)</li>
-            <li><strong>Google AdMob</strong> — Serves advertisements on the free tier. (See <a href="https://policies.google.com/privacy">policies.google.com/privacy</a>)</li>
-            <li><strong>Google Play Billing</strong> — Handles payment processing for in-app purchases.</li>
+            <li><strong>RevenueCat</strong> — processes in-app purchases and manages subscription status. RevenueCat may collect purchase receipt data and device identifiers. See <a href="https://www.revenuecat.com/privacy" rel="noopener">revenuecat.com/privacy</a></li>
+            <li><strong>Google AdMob</strong> — serves advertisements on the free tier. AdMob may collect device identifiers and advertising IDs. See <a href="https://policies.google.com/privacy" rel="noopener">policies.google.com/privacy</a></li>
+            <li><strong>Google Play Billing</strong> — handles payment processing for in-app purchases.</li>
         </ul>
-
         <h3>6. Data Retention</h3>
-        <p>All data stored by MeetOps lives on your device. Uninstalling the app removes all associated data permanently. We retain no copies on any server.</p>
-
+        <p>Schedule and preferences stored by MeetOps on your device are removed when you uninstall the app. We do not keep copies of that local app data on our own servers.</p>
+        <p>Third-party services (Google, RevenueCat, etc.) may retain information they process according to their own retention policies.</p>
         <h3>7. Changes to This Policy</h3>
         <p>We may update this Privacy Policy as the app evolves. Significant changes will be communicated through an in-app notice. Continued use of MeetOps after changes constitutes acceptance of the updated policy.</p>
-
+        <p>This policy was last updated: April 2026.</p>
         <h3>8. Contact Us</h3>
         <p>If you have questions or concerns about this Privacy Policy or how MeetOps handles your data, you can reach us at: <strong>support.meetops@gmail.com</strong></p>
+        <p class="footer">MeetOps · All rights reserved</p>
     </div>
 </body>
 </html>
